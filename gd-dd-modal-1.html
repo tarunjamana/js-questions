@@ -1,0 +1,272 @@
+<style>
+    /*Close Icon*/
+    .svgCloseIc {
+        height: 24px;
+        width: 24px;
+        padding: 10px 16px 0 0;
+
+    }
+
+    .popup-close {
+        display: inline-block;
+        background: transparent;
+        border: none;
+        position: absolute;
+        right: 0;
+        top: 3px;
+        padding:0;
+    }
+
+    /*Heading Text*/
+     .gd-modal-heading{
+        font-family: 'Averta';
+         font-weight: 700;
+         font-size: 24px;
+         line-height: 26px;
+         color: #262626;
+         margin-bottom:16px !important;
+		 text-transform: unset;
+		 float: none !important;
+         width: 100% !important;
+         text-align: center;
+     }
+
+     .gd-modal-disclaimer{
+        font-family: 'Averta';
+         font-weight: 400;
+         font-size: 13px;
+         line-height: 16px;
+         color: #262626;
+         margin-bottom: 24px;
+         margin-top: 0 !important;
+     }
+
+     .modal-img-logo{
+         width:64px;
+         height:64px;
+
+     }
+
+    .licls{
+        padding-left: 0px !important;
+        list-style-type: none !important;
+		margin-left:20px;
+		margin-bottom: 32px;
+    }
+
+    .licls li{
+        display: flex;
+        align-items: center;
+        margin-bottom: 8px;
+    }
+
+    .logo-text-section{
+        font-size: 12px;
+        line-height: 15px;
+        font-weight: 400;
+        font-family: 'Averta';
+        margin-bottom: 0px;
+        padding-left: 10px;
+        padding-top: 0px;
+        margin-top: 0px !important;
+        color: #262626;
+    }
+
+	/*Button */
+    button {
+        text-decoration: none;
+        cursor: pointer;
+    }
+	#learn_more_tar {
+		color: #fff !important;
+		margin-top: -20px;
+	}
+	
+    /*Learn More Button*/
+    .btn-learn-more {
+		padding-left:0px;
+		padding-right:0px;
+        padding-top: 11px;
+        padding-bottom: 11px;
+        text-align: center;
+        font-size: 16px;
+        border-radius: 3px;
+        line-height: 19px;
+        background-color: #3DBF2F;
+        color: #fff !important;
+        text-decoration: none !important;
+        width: 100%;
+        display: inline-block;
+		font-family: 'Averta' !important;
+    }
+
+    /*Svg Icons*/
+    .svgIc {
+        height: 40px;
+        width: 40px;
+        padding: 0 0 0 0;
+        vertical-align: text-top;
+        letter-spacing: 2em;
+        overflow: visible !important;
+    }
+
+    /*List*/
+    ul {
+        margin-bottom: 24px;
+    }
+
+    .modal-img{
+        display: flex;
+        justify-content:center;
+        margin-bottom: 16px;
+    }
+    
+	
+    /*Disclaimer*/
+    .disclaimer {
+        font-size: 11px;
+        line-height: 14px;
+        text-align: center;
+        font-family: 'Averta-Regular';
+        padding: 10px 0 8px 0;
+        margin-bottom: 18px;
+    }
+	.disclaimer_txt {
+		font-size:8px;		
+	}
+
+    sup {
+    top: -2em;
+     }
+
+	sub, sup {
+		position: relative;
+		font-size: 30%;
+		line-height: 0;
+		vertical-align: baseline;
+	}
+
+
+    /*Popup Overlay*/
+    .popup-overlay {
+        display: none;
+        background: rgba(0, 0, 0, .5);
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+    }
+
+    .popup-overlay.active {
+        display: flex;
+    }
+
+    /*Popup Body*/
+    .popup-body {
+        text-align: left;
+        align-content: center;
+        padding: 23px 15px 13px 15px;
+        background-color: #F7F7F7;
+        color: #000000;
+        font-family: Averta;
+        font-style: normal;
+        align-content: center;
+    }
+
+    /*Popup Frame*/
+    .popup-frame {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        background-color: #F7F7F7;
+        border-radius: 8px;
+        overflow: hidden;
+    }
+
+    /*Popup Content*/
+    .popup-content {
+        display: none;
+        width: 100%;        
+        position: relative;
+        background: #F7F7F7;
+        box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.4);
+        border-radius: 8px;
+    }
+
+    .popup-content.active {
+        display: block;
+    }
+
+
+@media(max-width: 767px){
+   .popup-overlay{
+       justify-content: unset;
+       align-items: flex-end;
+   }
+ }
+ @media(min-width: 767px){
+ .popup-content {
+	max-width:398px;
+ }
+}
+</style>
+<script>
+    $(document).ready(function () {
+        var ddModal = ` 
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<symbol viewBox="0 0 24 24" id="gd-close-icon">
+<circle cx="12" cy="12" r="12" fill="#F7F7F7"/>
+<path d="M13.1749 12L16.7583 8.42499C16.9152 8.26807 17.0034 8.05524 17.0034 7.83333C17.0034 7.61141 16.9152 7.39858 16.7583 7.24166C16.6014 7.08474 16.3885 6.99658 16.1666 6.99658C15.9447 6.99658 15.7319 7.08474 15.5749 7.24166L11.9999 10.825L8.42495 7.24166C8.26803 7.08474 8.0552 6.99658 7.83328 6.99658C7.61136 6.99658 7.39854 7.08474 7.24162 7.24166C7.0847 7.39858 6.99654 7.61141 6.99654 7.83333C6.99654 8.05524 7.0847 8.26807 7.24162 8.42499L10.8249 12L7.24162 15.575C7.16351 15.6525 7.10151 15.7446 7.05921 15.8462C7.0169 15.9477 6.99512 16.0566 6.99512 16.1667C6.99512 16.2767 7.0169 16.3856 7.05921 16.4871C7.10151 16.5887 7.16351 16.6809 7.24162 16.7583C7.31908 16.8364 7.41125 16.8984 7.5128 16.9407C7.61435 16.983 7.72327 17.0048 7.83328 17.0048C7.94329 17.0048 8.05221 16.983 8.15376 16.9407C8.25531 16.8984 8.34748 16.8364 8.42495 16.7583L11.9999 13.175L15.5749 16.7583C15.6524 16.8364 15.7446 16.8984 15.8461 16.9407C15.9477 16.983 16.0566 17.0048 16.1666 17.0048C16.2766 17.0048 16.3855 16.983 16.4871 16.9407C16.5886 16.8984 16.6808 16.8364 16.7583 16.7583C16.8364 16.6809 16.8984 16.5887 16.9407 16.4871C16.983 16.3856 17.0048 16.2767 17.0048 16.1667C17.0048 16.0566 16.983 15.9477 16.9407 15.8462C16.8984 15.7446 16.8364 15.6525 16.7583 15.575L13.1749 12Z" fill="#3DBF2F"/>
+</symbol>
+</svg>
+
+<svg width="65" height="64" viewBox="0 0 65 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+<symbol viewBox="0 0 65 64" id="gd-money-fast">
+<circle cx="33" cy="32" r="30.25" fill="#3DBF2F" stroke="black" stroke-width="1.5"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M43.3767 25.106C41.013 25.106 39.3227 26.5985 39.0474 27.8182C38.7722 29.0378 39.7888 30.5303 42.1525 30.5303C45.7325 30.5303 48.6626 32.9246 47.857 36.494C47.0514 40.0634 43.0406 42.4577 39.4606 42.4577C35.8805 42.4577 32.9505 40.0634 33.756 36.494C33.9587 35.5961 34.8692 34.8682 35.7896 34.8682C36.7101 34.8682 37.292 35.5961 37.0894 36.494C36.8141 37.7137 37.8307 39.2062 40.1944 39.2062C42.5581 39.2062 44.2484 37.7137 44.5237 36.494C44.799 35.2744 43.7823 33.7819 41.4186 33.7819C37.8386 33.7819 34.9085 31.3876 35.7141 27.8182C36.5197 24.2488 40.5305 21.8545 44.1105 21.8545C47.6906 21.8545 50.6207 24.2488 49.8151 27.8182C49.6124 28.7161 48.702 29.444 47.7815 29.444C46.861 29.444 46.2791 28.7161 46.4818 27.8182C46.757 26.5985 45.7404 25.106 43.3767 25.106Z" fill="white"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M44.9621 18.0825C45.8826 18.0825 46.4645 18.8104 46.2618 19.7083L45.4105 23.4804C45.2078 24.3783 44.2974 25.1062 43.3769 25.1062C42.4564 25.1062 41.8745 24.3783 42.0772 23.4804L42.9285 19.7083C43.1311 18.8104 44.0416 18.0825 44.9621 18.0825Z" fill="white"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M40.195 39.2061C41.1155 39.2061 41.6974 39.9339 41.4947 40.8318L40.6434 44.6039C40.4408 45.5018 39.5303 46.2297 38.6098 46.2297C37.6893 46.2297 37.1074 45.5018 37.3101 44.6039L38.1614 40.8318C38.364 39.9339 39.2745 39.2061 40.195 39.2061Z" fill="white"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M24.5 25.3332C24.5 24.4127 25.2462 23.6665 26.1667 23.6665L33.1463 23.6665C34.0668 23.6665 34.813 24.4127 34.813 25.3332C34.813 26.2536 34.0668 26.9998 33.1463 26.9998L26.1667 26.9998C25.2462 26.9998 24.5 26.2536 24.5 25.3332Z" fill="white"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M20.3745 31.9997C20.3745 31.0792 21.1207 30.333 22.0412 30.333L31.0834 30.333C32.0039 30.333 32.7501 31.0792 32.7501 31.9997C32.7501 32.9201 32.0039 33.6663 31.0834 33.6663L22.0412 33.6663C21.1207 33.6663 20.3745 32.9201 20.3745 31.9997Z" fill="white"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M16.2495 38.6667C16.2495 37.7462 16.9957 37 17.9162 37L29.021 37C29.9415 37 30.6877 37.7462 30.6877 38.6667C30.6877 39.5871 29.9415 40.3333 29.021 40.3333L17.9162 40.3333C16.9957 40.3333 16.2495 39.5871 16.2495 38.6667Z" fill="white"/>
+</symbol>
+</svg>
+<div class="popup-overlay">
+    <div class="popup-content">
+            <div class="popup-frame">
+                <div class="popup-body">
+                    <button class="popup-close">
+                        <svg class="svgCloseIc"><use href="#gd-close-icon"/></svg>
+                    </button>
+                    <div class="modal-img"><svg class="modal-img-logo"><use href="#gd-money-fast"/></svg></div>
+                    <h2 class="gd-modal-heading">Get paid up to 2 days early</h2>
+                    <p class="gd-modal-disclaimer">With early direct deposit, you’ll be able to get paid up to <b>2 days early</b> and government benefits up to <b>4 days early</b></p>
+                    <a class="btn-learn-more" target="_blank" title="Learn more" href="https://secure.greendot.com/greendot/directdeposit/direct-deposit-enroll"><span id="learn_more_tar">Set up direct deposit</span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+  
+  `
+        $("body").append(ddModal);
+        $(".popup-overlay, .popup-content").addClass("active");
+        $(".popup-close, .cancel").on('click', function () {
+            $(".popup-overlay, .popup-content").removeClass("active");
+            
+
+        });
+        var modal = document.querySelector(".popup-overlay")
+        $(window).on('click', function (event) {
+            if (event.target == modal) {
+                $(".popup-overlay, .popup-content").removeClass("active");                
+            
+            }
+        });
+    })
+</script>

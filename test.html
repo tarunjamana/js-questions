@@ -1,0 +1,281 @@
+<style>
+    /*Close Icon*/
+    .svgCloseIc {
+        height: 24px;
+        width: 24px;
+        padding: 10px 16px 0 0;
+
+    }
+
+    .popup-close {
+        display: inline-block;
+        background: transparent;
+        border: none;
+        position: absolute;
+        right: 0;
+        top: 3px;
+        padding:0;
+    }
+
+    /*Heading Text*/
+     .gd-modal-heading{
+         font-family: 'Averta';
+         font-weight: 400;
+         font-size: 19px;
+         line-height: 23px;
+         color: #000000;
+         margin-bottom:0 !important;
+		 text-transform: unset;
+		 float: none !important;
+         width: 100% !important;
+         text-align: left;
+     }
+
+     .gd-modal-disclaimer{
+        font-family: 'Averta';
+         font-weight: 400;
+         font-size: 8px;
+         line-height: 15px;
+         color: #000000;
+         margin-bottom: 22px;
+         margin-top: 0 !important;
+     }
+
+     .modal-img-logo{
+         width:46px;
+         height:46px;
+
+     }
+
+    .licls{
+        padding-left: 0px !important;
+        list-style-type: none !important;
+		margin-left:20px;
+		margin-bottom: 32px;
+    }
+
+    .licls li{
+        display: flex;
+        align-items: center;
+        margin-bottom: 8px;
+    }
+
+    .logo-text-section{
+        font-size: 12px;
+        line-height: 15px;
+        font-weight: 400;
+        font-family: 'Averta';
+        margin-bottom: 0px;
+        padding-left: 10px;
+        padding-top: 0px;
+        margin-top: 0px !important;
+        color: #262626;
+    }
+
+	/*Button */
+    button {
+        text-decoration: none;
+        cursor: pointer;
+    }
+	#learn_more_tar {
+		color: #000 !important;
+		margin-top: -20px;
+	}
+	
+    /*Learn More Button*/
+    .btn-learn-more {
+		padding-left:0px;
+		padding-right:0px;
+        padding-top: 11px;
+        padding-bottom: 11px;
+        text-align: center;
+        font-size: 15px;
+        border-radius: 100px;
+        line-height: 19px;
+        background-color: #49D600;
+        color: #000 !important;
+        text-decoration: none !important;
+        width: 100%;
+        display: inline-block;
+		font-family: 'Averta' !important;
+    }
+
+    /*Svg Icons*/
+    .svgIc {
+        height: 40px;
+        width: 40px;
+        padding: 0 0 0 0;
+        vertical-align: text-top;
+        letter-spacing: 2em;
+        overflow: visible !important;
+    }
+
+    /*List*/
+    ul {
+        margin-bottom: 24px;
+    }
+
+    .modal-img{
+        display: flex;
+        justify-content:center;
+        margin-bottom: 16px;
+    }
+    
+	
+    /*Disclaimer*/
+    .disclaimer {
+        font-size: 11px;
+        line-height: 14px;
+        text-align: center;
+        font-family: 'Averta-Regular';
+        padding: 10px 0 8px 0;
+        margin-bottom: 18px;
+    }
+	.disclaimer_txt {
+		font-size:8px;		
+	}
+
+    sup {
+    top: -2em;
+     }
+
+	sub, sup {
+		position: relative;
+		font-size: 30%;
+		line-height: 0;
+		vertical-align: baseline;
+	}
+
+
+    /*Popup Overlay*/
+    .popup-overlay {
+        display: none;
+        background: rgba(0, 0, 0, .5);
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+    }
+
+    .popup-overlay.active {
+        display: flex;
+    }
+
+    /*Popup Body*/
+    .popup-body {
+        text-align: left;
+        align-content: center;
+        padding: 23px 15px 13px 15px;
+        background-color: #F7F7F7;
+        color: #000000;
+        font-family: Averta;
+        font-style: normal;
+        align-content: center;
+    }
+
+    /*Popup Frame*/
+    .popup-frame {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        background-color: #F7F7F7;
+        border-radius: 8px;
+        overflow: hidden;
+    }
+
+    /*Popup Content*/
+    .popup-content {
+        display: none;
+        width: 100%;        
+        position: relative;
+        background: #F7F7F7;
+        box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.4);
+        border-radius: 8px;
+    }
+
+    .popup-content.active {
+        display: block;
+    }
+
+
+@media(max-width: 767px){
+   .popup-overlay{
+       justify-content: unset;
+       align-items: flex-end;
+   }
+ }
+ @media(min-width: 767px){
+ .popup-content {
+	max-width:398px;
+ }
+}
+</style>
+<script>
+    $(document).ready(function () {
+        var ddModal = ` 
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <symbol viewBox="0 0 24 24" id="gd-dollar-close">
+<circle cx="12" cy="12" r="12" fill="black"/>
+<path d="M13.175 12L16.7583 8.42499C16.9153 8.26807 17.0034 8.05524 17.0034 7.83333C17.0034 7.61141 16.9153 7.39858 16.7583 7.24166C16.6014 7.08474 16.3886 6.99658 16.1667 6.99658C15.9448 6.99658 15.7319 7.08474 15.575 7.24166L12 10.825L8.42501 7.24166C8.26809 7.08474 8.05526 6.99658 7.83334 6.99658C7.61143 6.99658 7.3986 7.08474 7.24168 7.24166C7.08476 7.39858 6.9966 7.61141 6.9966 7.83333C6.9966 8.05524 7.08476 8.26807 7.24168 8.42499L10.825 12L7.24168 15.575C7.16357 15.6525 7.10157 15.7446 7.05927 15.8462C7.01696 15.9477 6.99518 16.0566 6.99518 16.1667C6.99518 16.2767 7.01696 16.3856 7.05927 16.4871C7.10157 16.5887 7.16357 16.6809 7.24168 16.7583C7.31915 16.8364 7.41131 16.8984 7.51286 16.9407C7.61441 16.983 7.72333 17.0048 7.83334 17.0048C7.94335 17.0048 8.05227 16.983 8.15382 16.9407C8.25537 16.8984 8.34754 16.8364 8.42501 16.7583L12 13.175L15.575 16.7583C15.6525 16.8364 15.7446 16.8984 15.8462 16.9407C15.9477 16.983 16.0567 17.0048 16.1667 17.0048C16.2767 17.0048 16.3856 16.983 16.4872 16.9407C16.5887 16.8984 16.6809 16.8364 16.7583 16.7583C16.8364 16.6809 16.8984 16.5887 16.9408 16.4871C16.9831 16.3856 17.0048 16.2767 17.0048 16.1667C17.0048 16.0566 16.9831 15.9477 16.9408 15.8462C16.8984 15.7446 16.8364 15.6525 16.7583 15.575L13.175 12Z" fill="#49D600"/>
+</symbol>
+</svg>  
+<svg width="40" height="41" viewBox="0 0 40 41" fill="none" xmlns="http://www.w3.org/2000/svg">
+<symbol viewBox="0 0 40 40" id="gd-dollar-speed">
+<rect y="0.203857" width="40" height="40" rx="20" fill="black"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M26.2263 16.0676C24.8081 16.0676 23.7939 16.9631 23.6287 17.6949C23.4635 18.4266 24.0735 19.3221 25.4917 19.3221C27.6398 19.3221 29.3978 20.7587 28.9145 22.9004C28.4311 25.042 26.0246 26.4786 23.8766 26.4786C21.7286 26.4786 19.9705 25.042 20.4539 22.9004C20.5755 22.3616 21.1217 21.9249 21.674 21.9249C22.2263 21.9249 22.5755 22.3616 22.4539 22.9004C22.2887 23.6321 22.8987 24.5276 24.3169 24.5276C25.7351 24.5276 26.7493 23.6321 26.9145 22.9004C27.0796 22.1686 26.4696 21.2731 25.0514 21.2731C22.9034 21.2731 21.1454 19.8365 21.6287 17.6949C22.1121 15.5532 24.5185 14.1166 26.6666 14.1166C28.8146 14.1166 30.5726 15.5532 30.0893 17.6949C29.9677 18.2336 29.4214 18.6703 28.8691 18.6703C28.3169 18.6703 27.9677 18.2336 28.0893 17.6949C28.2545 16.9631 27.6445 16.0676 26.2263 16.0676Z" fill="#49D600"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M27.1775 11.8534C27.7298 11.8534 28.0789 12.2901 27.9573 12.8289L27.4465 15.0921C27.325 15.6309 26.7787 16.0676 26.2264 16.0676C25.6741 16.0676 25.325 15.6309 25.4465 15.0921L25.9573 12.8289C26.0789 12.2901 26.6252 11.8534 27.1775 11.8534Z" fill="#49D600"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M24.317 24.5276C24.8692 24.5276 25.2184 24.9643 25.0968 25.5031L24.586 27.7663C24.4644 28.305 23.9181 28.7418 23.3658 28.7418C22.8136 28.7418 22.4644 28.305 22.586 27.7663L23.0968 25.5031C23.2184 24.9643 23.7647 24.5276 24.317 24.5276Z" fill="#49D600"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M14.8999 16.2039C14.8999 15.6516 15.3476 15.2039 15.8999 15.2039L20.0877 15.2039C20.64 15.2039 21.0877 15.6516 21.0877 16.2039C21.0877 16.7561 20.64 17.2039 20.0877 17.2039L15.8999 17.2039C15.3476 17.2039 14.8999 16.7561 14.8999 16.2039Z" fill="#49D600"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M12.4248 20.2039C12.4248 19.6516 12.8725 19.2039 13.4248 19.2039L18.8501 19.2039C19.4024 19.2039 19.8501 19.6516 19.8501 20.2039C19.8501 20.7561 19.4024 21.2039 18.8501 21.2039L13.4248 21.2039C12.8725 21.2039 12.4248 20.7561 12.4248 20.2039Z" fill="#49D600"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M9.94971 24.2039C9.94971 23.6516 10.3974 23.2039 10.9497 23.2039L17.6126 23.2039C18.1649 23.2039 18.6126 23.6516 18.6126 24.2039C18.6126 24.7561 18.1649 25.2039 17.6126 25.2039L10.9497 25.2039C10.3974 25.2039 9.94971 24.7561 9.94971 24.2039Z" fill="#49D600"/>
+</symbol>
+</svg>    
+<svg width="40" height="41" viewBox="0 0 40 41" fill="none" xmlns="http://www.w3.org/2000/svg">
+<symbol viewBox="0 0 40 40" id="gd-dollar-shield">
+<rect y="0.203857" width="40" height="40" rx="20" fill="black"/>
+<path d="M27.6 11.8039C27.5 11.7039 27.3 11.6039 27.2 11.6039C27.1 11.6039 26.9 11.6039 26.8 11.6039C25.7 11.8039 24.6 11.8039 23.6 11.6039C22.6 11.4039 21.5 10.9039 20.6 10.3039C20.4 10.3039 20.2 10.2039 20 10.2039C19.8 10.2039 19.6 10.3039 19.4 10.4039C18.5 11.0039 17.5 11.5039 16.4 11.7039C15.3 11.9039 14.2 11.9039 13.2 11.7039C13.1 11.7039 12.9 11.7039 12.8 11.7039C12.7 11.7039 12.5 11.8039 12.4 11.9039C12.3 11.9039 12.2 12.1039 12.1 12.2039C12 12.3039 12 12.5039 12 12.6039V20.1039C12 21.5039 12.3 22.9039 13 24.2039C13.7 25.5039 14.6 26.6039 15.8 27.4039L19.4 30.0039C19.6 30.1039 19.8 30.2039 20 30.2039C20.2 30.2039 20.4 30.1039 20.6 30.0039L24.2 27.4039C25.4 26.6039 26.3 25.5039 27 24.2039C27.7 22.9039 28 21.5039 28 20.1039V12.6039C28 12.5039 28 12.3039 27.9 12.2039C27.8 12.1039 27.7 11.9039 27.6 11.8039ZM26 20.1039C26 21.2039 25.7 22.3039 25.2 23.3039C24.7 24.3039 24 25.1039 23 25.8039L20 28.0039L16.9 25.8039C16 25.2039 15.3 24.3039 14.7 23.3039C14.3 22.3039 14 21.2039 14 20.1039V13.8039C16.1 14.0039 18.2 13.5039 20 12.4039C21.8 13.5039 23.9 14.0039 26 13.8039V20.1039Z" fill="#49D600"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M20 17.866C19.3687 17.866 19.1531 18.2587 19.1531 18.41C19.1531 18.5612 19.3687 18.9539 20 18.9539C21.2422 18.9539 22.547 19.8102 22.547 21.1978C22.547 22.5855 21.2422 23.4418 20 23.4418C18.7579 23.4418 17.4531 22.5855 17.4531 21.1978C17.4531 20.7284 17.8336 20.3478 18.3031 20.3478C18.7725 20.3478 19.1531 20.7284 19.1531 21.1978C19.1531 21.3491 19.3687 21.7418 20 21.7418C20.6314 21.7418 20.847 21.3491 20.847 21.1978C20.847 21.0466 20.6314 20.6539 20 20.6539C18.7579 20.6539 17.4531 19.7976 17.4531 18.41C17.4531 17.0223 18.7579 16.166 20 16.166C21.2422 16.166 22.547 17.0223 22.547 18.41C22.547 18.8794 22.1664 19.26 21.697 19.26C21.2276 19.26 20.847 18.8794 20.847 18.41C20.847 18.2587 20.6314 17.866 20 17.866Z" fill="#49D600"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M20.0001 14.9539C20.4695 14.9539 20.8501 15.3344 20.8501 15.8039V17.016C20.8501 17.4854 20.4695 17.866 20.0001 17.866C19.5306 17.866 19.1501 17.4854 19.1501 17.016V15.8039C19.1501 15.3344 19.5306 14.9539 20.0001 14.9539Z" fill="#49D600"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M20.0001 21.7417C20.4695 21.7417 20.8501 22.1223 20.8501 22.5917V23.8038C20.8501 24.2733 20.4695 24.6538 20.0001 24.6538C19.5306 24.6538 19.1501 24.2733 19.1501 23.8038V22.5917C19.1501 22.1223 19.5306 21.7417 20.0001 21.7417Z" fill="#49D600"/>
+</symbol>
+</svg>                         
+<div class="popup-overlay">
+    <div class="popup-content">
+            <div class="popup-frame">
+                <div class="popup-body">
+					<p id="modal_name" hidden>${campaign.name}</p>
+                    <button class="popup-close">
+                        <svg class="svgCloseIc"><use href="#gd-dollar-close"/></svg>
+                    </button>
+                    <div class="modal-img"><svg class="modal-img-logo"><use href="#gd-dollar-shield"/></svg></div>
+                    <h2 class="gd-modal-heading">Unlock up to <b>$200 in overdraft protection</b> with opt-in & eligible direct deposit</h2>
+                    <p class="gd-modal-disclaimer"> Fees, terms, and conditions apply.</p>
+                    <a class="btn-learn-more" target="_blank" title="Learn more" href="https://secure.greendot.com/greendot/directdeposit/direct-deposit-enroll"><span id="learn_more_tar">Set up direct deposit</span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+  
+  `
+        $("body").append(ddModal);
+        $(".popup-overlay, .popup-content").addClass("active");
+        $(".popup-close, .cancel").on('click', function () {
+            $(".popup-overlay, .popup-content").removeClass("active");
+            
+
+        });
+        var modal = document.querySelector(".popup-overlay")
+        $(window).on('click', function (event) {
+            if (event.target == modal) {
+                $(".popup-overlay, .popup-content").removeClass("active");                
+            
+            }
+        });
+    })
+</script>
